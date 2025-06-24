@@ -17,8 +17,10 @@ export class WorkspaceController {
     return this.workspaceService.createProject(id, dto);
   }
 
-  @Post('delete-project')
-  public async deleteProject() {}
+  @Post('delete-project/:id')
+  public async deleteProject(@Param('id') projectId: string) {
+    return this.workspaceService.deleteProject(projectId);
+  }
 
   @Get('get-projects')
   public async getProjects(@Authorized('id') id: string) {

@@ -11,7 +11,10 @@ export class WorkspaceService {
     return project;
   }
 
-  public async deleteProject() {}
+  public async deleteProject(projectId: string) {
+    const project = await this.projectService.delete(projectId);
+    return project;
+  }
 
   public async getProjects(id: string) {
     const projects = await this.projectService.findAllOwnedById(id);

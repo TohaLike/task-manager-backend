@@ -60,5 +60,27 @@ export class TaskService {
 
   public async findById() {}
 
-  public async complete() {}
+  public async complete(id: string) {
+    const task = await this.prismaService.task.findUnique({
+      where: {
+        id,
+      },
+    });
+
+    if (!task) {
+      throw new NotFoundException('Задача не найдена');
+    }
+
+    if (task.isComplited) {
+      return this.prismaService.task.update({
+        where: { id },
+        data: { isComplited: false },
+      });
+    }
+
+    return this.prismaService.task.update({
+      where: { id },
+      data: { isComplited: true },
+    });
+  }
 }

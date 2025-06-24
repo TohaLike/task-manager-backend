@@ -32,8 +32,8 @@ export class TaskController {
     return this.taskService.findAllById(roomId);
   }
 
-  @Post('complete')
-  public async complete() {
-    return this.taskService.complete();
+  @Post('complete/:id')
+  public async complete(@Param('id') id: string) {
+    return this.taskService.complete(id);
   }
 }
