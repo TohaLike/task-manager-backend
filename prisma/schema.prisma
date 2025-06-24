@@ -28,10 +28,10 @@ model User {
 model Project {
   id String @id @default(uuid())
 
-  title String @unique
+  title String
 
-  owner  User   @relation(fields: [userId], references: [id])
-  userId String
+  owner  User   @relation(fields: [ownerId], references: [id])
+  ownerId String
 
   Task         Task[]
   participants User[] @relation("ProjectsParticipants")
