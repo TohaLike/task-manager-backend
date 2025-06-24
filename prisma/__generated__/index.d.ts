@@ -30,23 +30,6 @@ export type Project = $Result.DefaultSelection<Prisma.$ProjectPayload>
 export type Task = $Result.DefaultSelection<Prisma.$TaskPayload>
 
 /**
- * Enums
- */
-export namespace $Enums {
-  export const UserRole: {
-  LEADER: 'LEADER',
-  EMPLOYEE: 'EMPLOYEE'
-};
-
-export type UserRole = (typeof UserRole)[keyof typeof UserRole]
-
-}
-
-export type UserRole = $Enums.UserRole
-
-export const UserRole: typeof $Enums.UserRole
-
-/**
  * ##  Prisma Client ʲˢ
  *
  * Type-safe database client for TypeScript & Node.js
@@ -1170,7 +1153,6 @@ export namespace Prisma {
     id: string | null
     email: string | null
     password: string | null
-    userRole: $Enums.UserRole | null
     createdAt: Date | null
     updatedAt: Date | null
   }
@@ -1179,7 +1161,6 @@ export namespace Prisma {
     id: string | null
     email: string | null
     password: string | null
-    userRole: $Enums.UserRole | null
     createdAt: Date | null
     updatedAt: Date | null
   }
@@ -1188,7 +1169,6 @@ export namespace Prisma {
     id: number
     email: number
     password: number
-    userRole: number
     createdAt: number
     updatedAt: number
     _all: number
@@ -1199,7 +1179,6 @@ export namespace Prisma {
     id?: true
     email?: true
     password?: true
-    userRole?: true
     createdAt?: true
     updatedAt?: true
   }
@@ -1208,7 +1187,6 @@ export namespace Prisma {
     id?: true
     email?: true
     password?: true
-    userRole?: true
     createdAt?: true
     updatedAt?: true
   }
@@ -1217,7 +1195,6 @@ export namespace Prisma {
     id?: true
     email?: true
     password?: true
-    userRole?: true
     createdAt?: true
     updatedAt?: true
     _all?: true
@@ -1299,7 +1276,6 @@ export namespace Prisma {
     id: string
     email: string
     password: string
-    userRole: $Enums.UserRole
     createdAt: Date
     updatedAt: Date
     _count: UserCountAggregateOutputType | null
@@ -1325,7 +1301,6 @@ export namespace Prisma {
     id?: boolean
     email?: boolean
     password?: boolean
-    userRole?: boolean
     createdAt?: boolean
     updatedAt?: boolean
     Project?: boolean | User$ProjectArgs<ExtArgs>
@@ -1338,7 +1313,6 @@ export namespace Prisma {
     id?: boolean
     email?: boolean
     password?: boolean
-    userRole?: boolean
     createdAt?: boolean
     updatedAt?: boolean
   }, ExtArgs["result"]["user"]>
@@ -1347,7 +1321,6 @@ export namespace Prisma {
     id?: boolean
     email?: boolean
     password?: boolean
-    userRole?: boolean
     createdAt?: boolean
     updatedAt?: boolean
   }, ExtArgs["result"]["user"]>
@@ -1356,12 +1329,11 @@ export namespace Prisma {
     id?: boolean
     email?: boolean
     password?: boolean
-    userRole?: boolean
     createdAt?: boolean
     updatedAt?: boolean
   }
 
-  export type UserOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "email" | "password" | "userRole" | "createdAt" | "updatedAt", ExtArgs["result"]["user"]>
+  export type UserOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "email" | "password" | "createdAt" | "updatedAt", ExtArgs["result"]["user"]>
   export type UserInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     Project?: boolean | User$ProjectArgs<ExtArgs>
     Task?: boolean | User$TaskArgs<ExtArgs>
@@ -1382,7 +1354,6 @@ export namespace Prisma {
       id: string
       email: string
       password: string
-      userRole: $Enums.UserRole
       createdAt: Date
       updatedAt: Date
     }, ExtArgs["result"]["user"]>
@@ -1814,7 +1785,6 @@ export namespace Prisma {
     readonly id: FieldRef<"User", 'String'>
     readonly email: FieldRef<"User", 'String'>
     readonly password: FieldRef<"User", 'String'>
-    readonly userRole: FieldRef<"User", 'UserRole'>
     readonly createdAt: FieldRef<"User", 'DateTime'>
     readonly updatedAt: FieldRef<"User", 'DateTime'>
   }
@@ -4534,7 +4504,6 @@ export namespace Prisma {
     id: 'id',
     email: 'email',
     password: 'password',
-    userRole: 'userRole',
     createdAt: 'createdAt',
     updatedAt: 'updatedAt'
   };
@@ -4603,20 +4572,6 @@ export namespace Prisma {
 
 
   /**
-   * Reference to a field of type 'UserRole'
-   */
-  export type EnumUserRoleFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'UserRole'>
-    
-
-
-  /**
-   * Reference to a field of type 'UserRole[]'
-   */
-  export type ListEnumUserRoleFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'UserRole[]'>
-    
-
-
-  /**
    * Reference to a field of type 'DateTime'
    */
   export type DateTimeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'DateTime'>
@@ -4661,7 +4616,6 @@ export namespace Prisma {
     id?: StringFilter<"User"> | string
     email?: StringFilter<"User"> | string
     password?: StringFilter<"User"> | string
-    userRole?: EnumUserRoleFilter<"User"> | $Enums.UserRole
     createdAt?: DateTimeFilter<"User"> | Date | string
     updatedAt?: DateTimeFilter<"User"> | Date | string
     Project?: ProjectListRelationFilter
@@ -4673,7 +4627,6 @@ export namespace Prisma {
     id?: SortOrder
     email?: SortOrder
     password?: SortOrder
-    userRole?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
     Project?: ProjectOrderByRelationAggregateInput
@@ -4688,7 +4641,6 @@ export namespace Prisma {
     OR?: UserWhereInput[]
     NOT?: UserWhereInput | UserWhereInput[]
     password?: StringFilter<"User"> | string
-    userRole?: EnumUserRoleFilter<"User"> | $Enums.UserRole
     createdAt?: DateTimeFilter<"User"> | Date | string
     updatedAt?: DateTimeFilter<"User"> | Date | string
     Project?: ProjectListRelationFilter
@@ -4700,7 +4652,6 @@ export namespace Prisma {
     id?: SortOrder
     email?: SortOrder
     password?: SortOrder
-    userRole?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
     _count?: UserCountOrderByAggregateInput
@@ -4715,7 +4666,6 @@ export namespace Prisma {
     id?: StringWithAggregatesFilter<"User"> | string
     email?: StringWithAggregatesFilter<"User"> | string
     password?: StringWithAggregatesFilter<"User"> | string
-    userRole?: EnumUserRoleWithAggregatesFilter<"User"> | $Enums.UserRole
     createdAt?: DateTimeWithAggregatesFilter<"User"> | Date | string
     updatedAt?: DateTimeWithAggregatesFilter<"User"> | Date | string
   }
@@ -4858,7 +4808,6 @@ export namespace Prisma {
     id?: string
     email: string
     password: string
-    userRole?: $Enums.UserRole
     createdAt?: Date | string
     updatedAt?: Date | string
     Project?: ProjectCreateNestedManyWithoutOwnerInput
@@ -4870,7 +4819,6 @@ export namespace Prisma {
     id?: string
     email: string
     password: string
-    userRole?: $Enums.UserRole
     createdAt?: Date | string
     updatedAt?: Date | string
     Project?: ProjectUncheckedCreateNestedManyWithoutOwnerInput
@@ -4882,7 +4830,6 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
     password?: StringFieldUpdateOperationsInput | string
-    userRole?: EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     Project?: ProjectUpdateManyWithoutOwnerNestedInput
@@ -4894,7 +4841,6 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
     password?: StringFieldUpdateOperationsInput | string
-    userRole?: EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     Project?: ProjectUncheckedUpdateManyWithoutOwnerNestedInput
@@ -4906,7 +4852,6 @@ export namespace Prisma {
     id?: string
     email: string
     password: string
-    userRole?: $Enums.UserRole
     createdAt?: Date | string
     updatedAt?: Date | string
   }
@@ -4915,7 +4860,6 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
     password?: StringFieldUpdateOperationsInput | string
-    userRole?: EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -4924,7 +4868,6 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
     password?: StringFieldUpdateOperationsInput | string
-    userRole?: EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -5082,13 +5025,6 @@ export namespace Prisma {
     not?: NestedStringFilter<$PrismaModel> | string
   }
 
-  export type EnumUserRoleFilter<$PrismaModel = never> = {
-    equals?: $Enums.UserRole | EnumUserRoleFieldRefInput<$PrismaModel>
-    in?: $Enums.UserRole[] | ListEnumUserRoleFieldRefInput<$PrismaModel>
-    notIn?: $Enums.UserRole[] | ListEnumUserRoleFieldRefInput<$PrismaModel>
-    not?: NestedEnumUserRoleFilter<$PrismaModel> | $Enums.UserRole
-  }
-
   export type DateTimeFilter<$PrismaModel = never> = {
     equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
     in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
@@ -5124,7 +5060,6 @@ export namespace Prisma {
     id?: SortOrder
     email?: SortOrder
     password?: SortOrder
-    userRole?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
   }
@@ -5133,7 +5068,6 @@ export namespace Prisma {
     id?: SortOrder
     email?: SortOrder
     password?: SortOrder
-    userRole?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
   }
@@ -5142,7 +5076,6 @@ export namespace Prisma {
     id?: SortOrder
     email?: SortOrder
     password?: SortOrder
-    userRole?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
   }
@@ -5163,16 +5096,6 @@ export namespace Prisma {
     _count?: NestedIntFilter<$PrismaModel>
     _min?: NestedStringFilter<$PrismaModel>
     _max?: NestedStringFilter<$PrismaModel>
-  }
-
-  export type EnumUserRoleWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: $Enums.UserRole | EnumUserRoleFieldRefInput<$PrismaModel>
-    in?: $Enums.UserRole[] | ListEnumUserRoleFieldRefInput<$PrismaModel>
-    notIn?: $Enums.UserRole[] | ListEnumUserRoleFieldRefInput<$PrismaModel>
-    not?: NestedEnumUserRoleWithAggregatesFilter<$PrismaModel> | $Enums.UserRole
-    _count?: NestedIntFilter<$PrismaModel>
-    _min?: NestedEnumUserRoleFilter<$PrismaModel>
-    _max?: NestedEnumUserRoleFilter<$PrismaModel>
   }
 
   export type DateTimeWithAggregatesFilter<$PrismaModel = never> = {
@@ -5321,10 +5244,6 @@ export namespace Prisma {
 
   export type StringFieldUpdateOperationsInput = {
     set?: string
-  }
-
-  export type EnumUserRoleFieldUpdateOperationsInput = {
-    set?: $Enums.UserRole
   }
 
   export type DateTimeFieldUpdateOperationsInput = {
@@ -5553,13 +5472,6 @@ export namespace Prisma {
     not?: NestedStringFilter<$PrismaModel> | string
   }
 
-  export type NestedEnumUserRoleFilter<$PrismaModel = never> = {
-    equals?: $Enums.UserRole | EnumUserRoleFieldRefInput<$PrismaModel>
-    in?: $Enums.UserRole[] | ListEnumUserRoleFieldRefInput<$PrismaModel>
-    notIn?: $Enums.UserRole[] | ListEnumUserRoleFieldRefInput<$PrismaModel>
-    not?: NestedEnumUserRoleFilter<$PrismaModel> | $Enums.UserRole
-  }
-
   export type NestedDateTimeFilter<$PrismaModel = never> = {
     equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
     in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
@@ -5597,16 +5509,6 @@ export namespace Prisma {
     gt?: number | IntFieldRefInput<$PrismaModel>
     gte?: number | IntFieldRefInput<$PrismaModel>
     not?: NestedIntFilter<$PrismaModel> | number
-  }
-
-  export type NestedEnumUserRoleWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: $Enums.UserRole | EnumUserRoleFieldRefInput<$PrismaModel>
-    in?: $Enums.UserRole[] | ListEnumUserRoleFieldRefInput<$PrismaModel>
-    notIn?: $Enums.UserRole[] | ListEnumUserRoleFieldRefInput<$PrismaModel>
-    not?: NestedEnumUserRoleWithAggregatesFilter<$PrismaModel> | $Enums.UserRole
-    _count?: NestedIntFilter<$PrismaModel>
-    _min?: NestedEnumUserRoleFilter<$PrismaModel>
-    _max?: NestedEnumUserRoleFilter<$PrismaModel>
   }
 
   export type NestedDateTimeWithAggregatesFilter<$PrismaModel = never> = {
@@ -5794,7 +5696,6 @@ export namespace Prisma {
     id?: string
     email: string
     password: string
-    userRole?: $Enums.UserRole
     createdAt?: Date | string
     updatedAt?: Date | string
     Task?: TaskCreateNestedManyWithoutOwnerInput
@@ -5805,7 +5706,6 @@ export namespace Prisma {
     id?: string
     email: string
     password: string
-    userRole?: $Enums.UserRole
     createdAt?: Date | string
     updatedAt?: Date | string
     Task?: TaskUncheckedCreateNestedManyWithoutOwnerInput
@@ -5851,7 +5751,6 @@ export namespace Prisma {
     id?: string
     email: string
     password: string
-    userRole?: $Enums.UserRole
     createdAt?: Date | string
     updatedAt?: Date | string
     Project?: ProjectCreateNestedManyWithoutOwnerInput
@@ -5862,7 +5761,6 @@ export namespace Prisma {
     id?: string
     email: string
     password: string
-    userRole?: $Enums.UserRole
     createdAt?: Date | string
     updatedAt?: Date | string
     Project?: ProjectUncheckedCreateNestedManyWithoutOwnerInput
@@ -5889,7 +5787,6 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
     password?: StringFieldUpdateOperationsInput | string
-    userRole?: EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     Task?: TaskUpdateManyWithoutOwnerNestedInput
@@ -5900,7 +5797,6 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
     password?: StringFieldUpdateOperationsInput | string
-    userRole?: EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     Task?: TaskUncheckedUpdateManyWithoutOwnerNestedInput
@@ -5946,7 +5842,6 @@ export namespace Prisma {
     id?: StringFilter<"User"> | string
     email?: StringFilter<"User"> | string
     password?: StringFilter<"User"> | string
-    userRole?: EnumUserRoleFilter<"User"> | $Enums.UserRole
     createdAt?: DateTimeFilter<"User"> | Date | string
     updatedAt?: DateTimeFilter<"User"> | Date | string
   }
@@ -5955,7 +5850,6 @@ export namespace Prisma {
     id?: string
     email: string
     password: string
-    userRole?: $Enums.UserRole
     createdAt?: Date | string
     updatedAt?: Date | string
     Project?: ProjectCreateNestedManyWithoutOwnerInput
@@ -5966,7 +5860,6 @@ export namespace Prisma {
     id?: string
     email: string
     password: string
-    userRole?: $Enums.UserRole
     createdAt?: Date | string
     updatedAt?: Date | string
     Project?: ProjectUncheckedCreateNestedManyWithoutOwnerInput
@@ -6016,7 +5909,6 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
     password?: StringFieldUpdateOperationsInput | string
-    userRole?: EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     Project?: ProjectUpdateManyWithoutOwnerNestedInput
@@ -6027,7 +5919,6 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
     password?: StringFieldUpdateOperationsInput | string
-    userRole?: EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     Project?: ProjectUncheckedUpdateManyWithoutOwnerNestedInput
@@ -6205,7 +6096,6 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
     password?: StringFieldUpdateOperationsInput | string
-    userRole?: EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     Project?: ProjectUpdateManyWithoutOwnerNestedInput
@@ -6216,7 +6106,6 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
     password?: StringFieldUpdateOperationsInput | string
-    userRole?: EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     Project?: ProjectUncheckedUpdateManyWithoutOwnerNestedInput
@@ -6227,7 +6116,6 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
     password?: StringFieldUpdateOperationsInput | string
-    userRole?: EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }

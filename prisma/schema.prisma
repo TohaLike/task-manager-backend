@@ -13,8 +13,6 @@ model User {
   email    String @unique
   password String
 
-  userRole UserRole @default(EMPLOYEE)
-
   Project Project[]
   Task    Task[]
 
@@ -24,11 +22,6 @@ model User {
   updatedAt DateTime @updatedAt @map("updated_at")
 
   @@map("users")
-}
-
-enum UserRole {
-  LEADER
-  EMPLOYEE
 }
 
 model Project {

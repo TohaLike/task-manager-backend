@@ -8,7 +8,10 @@ import { IS_DEV_ENV } from './common/utils/is-dev.util';
 
 @Module({
   imports: [
-    ConfigModule.forRoot({ ignoreEnvFile: !IS_DEV_ENV, isGlobal: true }),
+    ConfigModule.forRoot({
+      ignoreEnvFile: !IS_DEV_ENV,
+      isGlobal: true,
+    }),
     PrismaModule,
     AuthModule,
     UserModule,
