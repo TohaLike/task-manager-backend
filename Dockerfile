@@ -17,5 +17,5 @@ RUN npx prisma generate
 # Собираем NestJS-приложение
 RUN npm run build
 
-# Запуск в продакшене
-CMD ["node", "dist/main"]
+# Запуск в продакшене с применением схемы базы через prisma db push
+CMD npx prisma db push && node dist/main
