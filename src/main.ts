@@ -51,6 +51,9 @@ async function bootstrap() {
 
   app.useWebSocketAdapter(redisIoAdapter);
 
+  console.log(config.getOrThrow<string>('ALLOWED_ORIGIN'))
+  console.log( config.getOrThrow<string>('SESSION_DOMAIN'))
+
   app.enableCors({
     origin: config.getOrThrow<string>('ALLOWED_ORIGIN'),
     credentials: true,
