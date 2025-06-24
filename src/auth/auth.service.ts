@@ -2,14 +2,20 @@ import {
   ConflictException,
   Injectable,
   InternalServerErrorException,
+  NotFoundException,
 } from '@nestjs/common';
 import { AuthDto } from './dto/auth.dto';
 import { UserService } from 'src/user/user.service';
-import { Request } from 'express';
+import { Request, Response } from 'express';
+import * as bcrypt from 'bcrypt';
+import { ConfigService } from '@nestjs/config';
 
 @Injectable()
 export class AuthService {
-  constructor(private readonly userService: UserService) {}
+  constructor(
+    private readonly userService: UserService,
+    private readonly configService: ConfigService,
+  ) {}
 
   public async register(req: Request, dto: AuthDto) {
     const candidate = await this.userService.findByEmail(dto.email);
@@ -20,9 +26,10 @@ export class AuthService {
       );
     }
 
-    const newUser = await this.userService.create(dto.email, dto.password);
+    const saltOrRounds = 10;
+    const hash = await bcrypt.hash(dto.password, saltOrRounds);
 
-    console.log(newUser)
+    const newUser = await this.userService.create(dto.email, hash);
 
     await this.saveSession(req, newUser);
 
@@ -31,12 +38,40 @@ export class AuthService {
     };
   }
 
-  public async login(dto: AuthDto) {}
+  public async login(req: Request, dto: AuthDto) {
+    const user = await this.userService.findByEmail(dto.email);
 
-  public async logout() {}
+    if (!user) {
+      throw new NotFoundException('Пользователь не зарегистрирован в системе');
+    }
+
+    const isValidPassword = await bcrypt.compare(dto.password, user.password);
+
+    if (!isValidPassword) {
+      throw new NotFoundException('Неверный пароль');
+    }
+
+    return this.saveSession(req, user);
+  }
+
+  public async logout(req: Request, res: Response): Promise<void> {
+    return new Promise((resoleve, reject) => {
+      req.session.destroy((error) => {
+        if (error) {
+          return reject(
+            new InternalServerErrorException(
+              'Не удалось завершить сессию. Возможно, возникла проблема с сервером или сессия уже была завершена.',
+            ),
+          );
+        }
+      });
+
+      res.clearCookie(this.configService.getOrThrow<string>('SESSION_NAME'));
+      resoleve();
+    });
+  }
 
   private async saveSession(req: Request, user: any) {
-    console.log(user.id)
     return new Promise((resolve, reject) => {
       req.session.userId = user.id;
 

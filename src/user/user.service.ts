@@ -1,5 +1,4 @@
-import { Injectable } from '@nestjs/common';
-import { AuthDto } from 'src/auth/dto/auth.dto';
+import { Injectable, UseGuards } from '@nestjs/common';
 import { PrismaService } from 'src/prisma/prisma.service';
 
 @Injectable()
@@ -22,6 +21,16 @@ export class UserService {
         email,
       },
     });
+    return user;
+  }
+
+  public async findById(id: string) {
+    const user = await this.prisma.user.findUnique({
+      where: {
+        id,
+      },
+    });
+
     return user;
   }
 }

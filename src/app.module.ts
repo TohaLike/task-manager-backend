@@ -5,6 +5,7 @@ import { UserModule } from './user/user.module';
 import { TaskModule } from './task/task.module';
 import { ConfigModule } from '@nestjs/config';
 import { IS_DEV_ENV } from './common/utils/is-dev.util';
+import { ProjectModule } from './project/project.module';
 
 @Module({
   imports: [
@@ -16,6 +17,7 @@ import { IS_DEV_ENV } from './common/utils/is-dev.util';
     AuthModule,
     UserModule,
     TaskModule,
+    ProjectModule,
   ],
 })
 export class AppModule {}
