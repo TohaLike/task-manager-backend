@@ -1,14 +1,21 @@
+# Используем Node.js на базе Alpine
 FROM node:18-alpine
 
+# Рабочая директория внутри контейнера
 WORKDIR /app
 
+# Установка зависимостей
 COPY package*.json ./
-
 RUN npm install
 
+# Копируем всё приложение
 COPY . .
 
-# Выполняем сборку проекта (предполагается, что в package.json есть скрипт build)
+# Генерируем Prisma Client с нужным бинарником
+RUN npx prisma generate
+
+# Собираем NestJS-приложение
 RUN npm run build
 
-CMD ["npm", "run", "start:prod"]
+# Запуск в продакшене
+CMD ["node", "dist/main"]
